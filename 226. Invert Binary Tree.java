@@ -1,5 +1,4 @@
-class Solution {
-    public TreeNode invertTree(TreeNode root) {
+ public TreeNode invertTree(TreeNode root) {
         return invert(root);
     }
     
@@ -14,4 +13,3 @@ class Solution {
         root.right = left;
         return root;
     }
-}

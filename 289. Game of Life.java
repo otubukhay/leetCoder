@@ -1,4 +1,4 @@
-    int[][] directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, 1}, {-1, -1}, {-1, 1}, {1, -1}};
+ int[][] directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, 1}, {-1, -1}, {-1, 1}, {1, -1}};
     public void gameOfLife(int[][] board)
     {
         for(int i = 0; i < board.length; i++)

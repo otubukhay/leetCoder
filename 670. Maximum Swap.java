@@ -1,10 +1,9 @@
-    public int maximumSwap(int num) 
-    {
+public int maximumSwap(int num) {
         char[] A = Integer.toString(num).toCharArray();
         int[] last = new int[10];
         for (int i = 0; i < A.length; i++) 
         {
-             last[A[i] - '0'] = i;
+            last[Character.getNumericValue(A[i])] = i;
         }
 
         for (int i = 0; i < A.length; i++) 

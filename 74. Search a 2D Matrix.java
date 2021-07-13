@@ -1,5 +1,4 @@
- public boolean searchMatrix(int[][] matrix, int target)
-    {        
+ public boolean searchMatrix(int[][] matrix, int target) {        
         if(matrix == null || matrix.length == 0)
             return false;
         
@@ -11,15 +10,13 @@
         
         while(left <= right)
         {            
-            int mid = left + (right - left)/2;     
-            int row = mid / cols;
-            int col = mid % cols;
-            if(matrix[row][col] == target)
+            int mid = left + (right - left)/2;            
+            if(matrix[mid / cols][mid % cols] == target)
             {
                 return true;
             }
             
-            if(matrix[row][col] > target)
+            if(matrix[mid / cols][mid % cols] > target)
             {
                 right = mid - 1;            
             }

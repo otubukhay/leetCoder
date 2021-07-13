@@ -6,10 +6,10 @@
         int lo = 0;
         int hi = nums.length - 1;
         
-        while(lo < hi && nums[lo] == nums[hi])
-        {
+         while(lo < hi && nums[lo] == nums[hi])
+         {
              lo++;
-        }
+         }
         
         while(lo <= hi)
         {

@@ -1,35 +1,39 @@
-    // O(N ^ 2 + 2 ^ N + W)
-	Map<String, List<String>> map = new HashMap<String, List<String>>();
-    public List<String> wordBreak(String s, List<String> wordDict) 
-    {
-        return wordBreak(s, new HashSet<String>(wordDict));
-    }    
+ HashMap<String,List<String>> map = new HashMap<String,List<String>>();
+    public List<String> wordBreak(String s, List<String> wordDict) {
+         return wordBreak(s, new HashSet<String>(wordDict));
+    }
     
-    public List<String> wordBreak(String str, Set<String> wordDict) 
+    
+    public List<String> wordBreak(String s, Set<String> wordDict) 
     {
-        List<String> res = new ArrayList<String>();  
-        if(map.containsKey(str)) 
+        List<String> res = new ArrayList<String>();        
+        if(s == null || s.length() == 0) 
         {
-            return map.get(str);
+            return res;
         }
         
-        if(wordDict.contains(str)) 
+        if(map.containsKey(s)) 
         {
-            res.add(str);
+            return map.get(s);
         }
         
-        for(int i = 1; i <= str.length(); i++) 
+        if(wordDict.contains(s)) 
         {
-            String firstPart = str.substring(0, i);
-            if(wordDict.contains(firstPart)) 
+            res.add(s);
+        }
+        
+        for(int i = 1 ; i < s.length(); i++) 
+        {
+            String t = s.substring(0, i);
+            if(wordDict.contains(t)) 
             {               
-                for(String secondPart : wordBreak(str.substring(i), wordDict)) 
+                for(String str : wordBreak(s.substring(i), wordDict)) 
                 {
-                    res.add(firstPart + " " + secondPart);
+                    res.add(t + " " + str);
                 }
             }
         }
         
-        map.put(str, res);
+        map.put(s , res);
         return res;
     }

@@ -13,7 +13,7 @@
         int start = 0;
         Map<Character, Integer> map = new HashMap();
         
-        for(int i = 0; i < s.length(); i++) //o(s)
+        for(int i = 0; i < s.length(); i++)
         {
             char cur = s.charAt(i);
             map.put(cur, map.getOrDefault(cur, 0) + 1);            
@@ -24,8 +24,7 @@
                         
             if(count == t.length())
             {                
-                while(start < i && 
-                      (!needMap.containsKey(s.charAt(start)) || map.get(s.charAt(start)) > needMap.get(s.charAt(start))))
+                while(start < i && (!needMap.containsKey(s.charAt(start)) || map.get(s.charAt(start)) > needMap.get(s.charAt(start))))
                 {
                     map.put(s.charAt(start), map.getOrDefault(s.charAt(start), 0) - 1);
                     if(map.get(s.charAt(start)) == 0)
@@ -44,8 +43,10 @@
                     
             }
             
-        }       
+        }
         
+        if(startIndex == -1)
+            return "";
         
-        return startIndex == -1 ? "" : s.substring(startIndex, startIndex + len);
+        return  s.substring(startIndex, startIndex + len);
     }

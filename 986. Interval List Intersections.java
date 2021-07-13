@@ -1,10 +1,4 @@
-   /*
-   Complexity Analysis
-	Time Complexity: O(M + N), where M, N,N are the lengths of A and B respectively.
-    Space Complexity: O(M + N), the maximum size of the answer.
-   */
-   
-    public int[][] intervalIntersection(int[][] A, int[][] B) 
+ public int[][] intervalIntersection(int[][] A, int[][] B) 
     {
         List<int[]> ans = new ArrayList();
         int i = 0, j = 0;
@@ -28,5 +22,5 @@
           }
         }
 
-        return ans.toArray(new int[ans.size()][2]); 
+        return ans.toArray(new int[ans.size()][]); 
     }

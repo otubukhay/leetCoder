@@ -1,5 +1,4 @@
-   public int calculate(String s) 
-   {
+ public int calculate(String s) {
         Queue<Character> q = new ArrayDeque<>();
         for (char c : s.toCharArray()) {
             if (c != ' ') {
@@ -16,8 +15,7 @@
         int prev = 0, sum = 0;
         char prevOp = '+';
 
-        while (!q.isEmpty()) 
-		{
+        while (!q.isEmpty()) {
             char c = q.poll();
 
             if (c >= '0' && c <= '9')
@@ -29,22 +27,21 @@
                 num = helper(q);
             } else 
 			{
-                switch (prevOp) 
-				{
-					case '+':
-						sum += prev;
-						prev = num;
-						break;
-					case '-':
-						sum += prev;
-						prev = -num;
-						break;
-					case '*':
-						prev *= num;
-						break;
-					case '/':
-						prev /= num;
-						break;
+                switch (prevOp) {
+                case '+':
+                    sum += prev;
+                    prev = num;
+                    break;
+                case '-':
+                    sum += prev;
+                    prev = -num;
+                    break;
+                case '*':
+                    prev *= num;
+                    break;
+                case '/':
+                    prev /= num;
+                    break;
                 }
 
                 if (c == ')') break;
@@ -54,5 +51,4 @@
             }
         }
 
-        return sum + prev;
-	}
+        return sum +

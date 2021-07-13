@@ -1,7 +1,6 @@
  public int myAtoi(String str) 
     {
-            int index = 0;
-            int sign = 1;
+            int index = 0, sign = 1;
             int total = 0;           
             if(str.length() == 0) 
                 return 0;          
@@ -14,20 +13,17 @@
             }
             
             while(index < str.length())
-            {                
-                if(!Character.isDigit(str.charAt(index))) 
+            {
+                int digit = str.charAt(index) - '0';
+                if(digit < 0 || digit > 9) 
                     break;
 
-                int digit = str.charAt(index) - '0';
                 //check if total will be overflow after 10 times and add digit
                 if(total > Integer.MAX_VALUE/10 || (digit > Integer.MAX_VALUE - 10 * total))
-                {
                     return (sign == 1) ? Integer.MAX_VALUE : Integer.MIN_VALUE;
-                }
 
                 total = 10 * total + digit;
-                index++;
+                index ++;
             }
-        
             return total * sign;
     }

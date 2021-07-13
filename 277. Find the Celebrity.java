@@ -1,4 +1,4 @@
-    public int findCelebrity(int n) 
+ public int findCelebrity(int n) 
     {        
         int celeb = 0;
         for(int i = 1; i < n;i++)

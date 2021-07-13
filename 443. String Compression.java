@@ -14,7 +14,7 @@
                 count++;
             }
             
-            chars[result++] = cur; //KOKO is that U dont need additional space for result. Just overrite input array
+            chars[result++] = cur;
             if(count > 1)
             {
                 for(char c :  String.valueOf(count).toCharArray())    

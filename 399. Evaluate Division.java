@@ -1,34 +1,28 @@
-/*
-Let N be the number of input equations and M be the number of queries.
-
-Time Complexity: O(M*N)
-*/
 public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) 
     {
-        Map<String, Map<String, Double>> map = buildMap(equations, values);
+        HashMap<String, HashMap<String, Double>> map = buildMap(equations, values);
         double[] result = new double[queries.size()];
         for (int i = 0; i < queries.size(); i++) 
         {
             List<String> query = queries.get(i);
-            result[i] = getExpressionValue(query.get(0), query.get(1), map, new HashSet<String>());            
+            result[i] = dfs(query.get(0), query.get(1), map, new HashSet<String>(), 1.0);
+            if (result[i] == 0.0)
+                result[i] = -1.0;
         }
         
         return result;
     }
     
-    Map<String, Map<String, Double>> buildMap(List<List<String>> equations, double[] values)
+    HashMap<String, HashMap<String, Double>> buildMap(List<List<String>> equations, double[] values)
     {
-        Map<String, Map<String, Double>> map = new HashMap<String, Map<String, Double>>();
-        for(int i = 0; i < equations.size(); i++) 
+        HashMap<String, HashMap<String, Double>> map = new HashMap<String, HashMap<String,Double>>();
+        for (int i = 0; i < equations.size(); i++) 
         {
             List<String> equation = equations.get(i);
-            if(!map.containsKey(equation.get(0))) 
-            {
-                map.put(equation.get(0), new HashMap<String, Double>());                
+            if (!map.containsKey(equation.get(0))) {
+                map.put(equation.get(0), new HashMap<String,Double>());                
             }
-            
-            if(!map.containsKey(equation.get(1))) 
-            {
+            if (!map.containsKey(equation.get(1))) {
                 map.put(equation.get(1), new HashMap<String,Double>());                
             }
            
@@ -39,29 +33,26 @@ public double[] calcEquation(List<List<String>> equations, double[] values, List
         return map;
     }
     
-    private double getExpressionValue(String start, String end, Map<String, Map<String, Double>> map, 
-                       Set<String> visited)
-    {       
-        if(!map.containsKey(start)) 
-            return -1.0;
+    private double dfs(String start, String end,  HashMap<String, HashMap<String, Double>> map, 
+                       HashSet<String> set, double value) {
+        if (set.contains(start)) 
+            return 0.0;
+        if (!map.containsKey(start) || !map.containsKey(end)) 
+             return 0.0;
+        if (start.equals(end)) 
+            return value;
         
-        if(map.get(start).containsKey(end))
-            return map.get(start).get(end);
-        
-        visited.add(start);
-        for (Map.Entry<String, Double> neighbour : map.get(start).entrySet()) 
-        {
-            String neighbourKey = neighbour.getKey(); 
-            double neighbourValue = neighbour.getValue();
-            if (!visited.contains(neighbourKey)) 
-            {
-                double calculatedVal = getExpressionValue(neighbourKey, end, map, visited);
-                if (calculatedVal != -1.0)
-                {
-                    return neighbourValue * calculatedVal;
-                }
+        set.add(start);        
+     
+        double tmp = 0.0;
+        HashMap<String, Double> children = map.get(start);
+        for(Map.Entry<String, Double> child : children.entrySet()){       
+            tmp = dfs(child.getKey(), end, map, set, value * child.getValue());
+            if (tmp != 0.0) {
+                break;
             }
         }
         
-        return -1.0;
+        set.remove(start);
+        return tmp;
     }

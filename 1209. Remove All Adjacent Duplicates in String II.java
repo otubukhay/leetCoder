@@ -1,4 +1,4 @@
-     public String removeDuplicates(String s, int k)
+ public String removeDuplicates(String s, int k)
      {       
         Stack<Adjacent> st = new Stack<>();
         for (char c : s.toCharArray())

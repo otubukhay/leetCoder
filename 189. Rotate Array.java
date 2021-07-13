@@ -1,26 +1,19 @@
-
-    public void rotate(int[] nums, int k) 
+   public void rotate(int[] nums, int k) 
     {
-        if(k == 0)
-            return;
-        
-        int n = nums.length;
-        k = k % n;        
-        swap(0, n - k - 1, nums);
-        swap(n - k, n - 1, nums);
-        
-        swap(0, n - 1,  nums);        
+        k %= nums.length;
+        reverse(nums, 0, nums.length - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, nums.length - 1);
     }
     
-    void swap(int i, int j, int[] nums)
-    {
-        while(i < j)
+     public void reverse(int[] nums, int start, int end) 
+     {
+        while (start < end) 
         {
-            int temp = nums[i];
-            nums[i] = nums[j];
-            nums[j] = temp;    
-            
-            i++;
-            j--;
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
         }
     }

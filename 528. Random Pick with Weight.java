@@ -1,4 +1,6 @@
- int[] sums = null;
+class Solution {
+
+       int[] sums = null;
     public Solution(int[] w)
     {
         sums = new int[w.length];
@@ -16,3 +18,5 @@
         int index = Arrays.binarySearch(sums, num);
         return (index >= 0 && index < sums.length) ? index : Math.abs(index) - 1;
     }    
+
+}

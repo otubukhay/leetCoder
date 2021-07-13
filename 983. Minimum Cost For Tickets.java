@@ -1,13 +1,13 @@
  public int mincostTickets(int[] days, int[] costs) {                    
           
           Set<Integer> s = new HashSet<>();
-          for(int day : days)
-		  {
+          for(int day : days){
               s.add(day);
           }
           
           int[] dp = new int[days[days.length - 1] + 1];
-          dp[0] = 0;          
+          dp[0] = 0;
+          
           for (int i = 1; i < dp.length; i++) 
           {
             

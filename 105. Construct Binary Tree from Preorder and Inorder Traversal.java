@@ -1,26 +1,30 @@
-    int preorderIndex;
-    Map<Integer, Integer> inorderIndexMap;
-    public TreeNode buildTree(int[] preorder, int[] inorder) 
-    {
-        preorderIndex = 0;        
-        inorderIndexMap = new HashMap<>();
-        for (int i = 0; i < inorder.length; i++) 
+ public TreeNode buildTree(int[] preorder, int[] inorder) {
+        return construct(preorder, 0, preorder.length -1, inorder, 0 , inorder.length-1);
+    }
+    
+    public TreeNode construct(int[] preorder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd){
+        if(preStart > preEnd || inStart > inEnd)
         {
-            inorderIndexMap.put(inorder[i], i);
+            return null;
         }
 
-        return arrayToTree(preorder, 0, preorder.length - 1);
-    }
-
-    private TreeNode arrayToTree(int[] preorder, int left, int right)
-    {
-        if (left > right) 
-            return null;
+        int val = preorder[preStart];
+        TreeNode p = new TreeNode(val);
         
-        int rootValue = preorder[preorderIndex++];
-        TreeNode root = new TreeNode(rootValue);
+        int k = find(inorder, val);
+        p.left = construct(preorder, preStart + 1, preStart + (k - inStart), inorder, inStart, k - 1);
+        p.right= construct(preorder, preStart+(k-inStart)+1, preEnd, inorder, k + 1 , inEnd);
 
-        root.left = arrayToTree(preorder, left, inorderIndexMap.get(rootValue) - 1);
-        root.right = arrayToTree(preorder, inorderIndexMap.get(rootValue) + 1, right);
-        return root;
+        return p;
+    }
+    
+    int find(int[] inorder, int val){
+        int k = 0;
+        for(int i=0; i<inorder.length; i++){
+            if(val == inorder[i]){
+               return i;
+            }
+        }   
+        return k;
+       
     }

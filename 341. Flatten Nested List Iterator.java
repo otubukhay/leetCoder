@@ -1,22 +1,17 @@
-public class NestedIterator implements Iterator<Integer> 
-{
+public class NestedIterator implements Iterator<Integer> {
+
     private Queue<Integer> queue = new LinkedList();    
-    public NestedIterator(List<NestedInteger> nestedList) 
-	{
+    public NestedIterator(List<NestedInteger> nestedList) {
             helper(nestedList);
     }
     
-    private void helper(List<NestedInteger> list)
-	{
-        if(list == null)
+    private void helper(List<NestedInteger> list){
+        if (list == null)
             return;
         
-        for (NestedInteger in: list)
-		{
-            if(in.isInteger())
-			{
-				queue.offer(in.getInteger());
-			}
+        for (NestedInteger in: list){
+            if (in.isInteger())
+                queue.offer(in.getInteger());
             else
             {
                 helper(in.getList());

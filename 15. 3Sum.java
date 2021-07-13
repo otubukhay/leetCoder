@@ -1,8 +1,8 @@
-   public List<List<Integer>> threeSum(int[] nums) 
+public List<List<Integer>> threeSum(int[] nums) 
     {
-       Arrays.sort(nums);        
-       List<List<Integer>> result = new ArrayList();
-       int n = nums.length;
+        Arrays.sort(nums);        
+        List<List<Integer>> result = new ArrayList();
+        int n = nums.length;
      
         for(int i = 0; i < n - 2 ;i++)
         {          
@@ -17,7 +17,8 @@
                   int sum = nums[i] + nums[j] + nums[k];
                   if(sum == 0)
                   {
-                      List<Integer> cur = new ArrayList<>(Arrays.asList(nums[i], nums[j], nums[k]));                      
+                      List<Integer> cur = new ArrayList<>(Arrays.asList(nums[i], nums[j], nums[k]));
+                      
                       result.add(cur);         
                       j++;
                       k--;

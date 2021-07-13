@@ -1,31 +1,30 @@
-    public int trap(int[] height) 
-    {       
-        if(height.length <= 2)
+ public int trap(int[] heights) 
+    {        
+        if(heights.length <= 2)
             return 0;
         
         int left = 0;
-        int right = height.length - 1;
-        
-        int maxLeft = 0;
-        int maxRight = 0;
+        int right = heights.length - 1;
         
         int result = 0;
-        while(left <= right)
+        int maxLeft = 0;
+        int maxRight = 0;
+        while(left < right)
         {
-            maxLeft = Math.max(maxLeft, height[left]);
-            maxRight = Math.max(maxRight, height[right]);
+            maxLeft = Math.max(maxLeft, heights[left]);
+            maxRight = Math.max(maxRight, heights[right]);
             
-            if(height[left] <= height[right])
+            if(heights[left] <= heights[right])
             {
-                result+= (maxLeft - height[left]);
-                left++;
+               result += (maxLeft - heights[left]);
+               left++;
             }
             else
             {
-                result+= (maxRight - height[right]);
-                right--;
+               result += (maxRight - heights[right]);
+               right--;    
             }
         }
-         
+        
         return result;
     }

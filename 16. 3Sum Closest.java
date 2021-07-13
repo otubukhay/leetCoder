@@ -1,24 +1,22 @@
-public int threeSumClosest(int[] nums, int target) 
-    {
+  public int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
-        int diff = Integer.MAX_VALUE;
+        int diff =  Integer.MAX_VALUE;
         int res = 0;
-        for (int i = 0; i < nums.length-2; i++) 
-        {         
-             int lo = i + 1, hi = nums.length-1;
+        for (int i = 0; i < nums.length-2; i++) {         
+             int lo = i+1, hi = nums.length-1;
              while (lo < hi) 
              {
                     int sum = nums[lo] + nums[hi] + nums[i];
                     int newDiff = Math.abs(sum - target);
                     if (newDiff < diff) 
                     {
-                        res = sum;    
+                        res = nums[lo] + nums[hi] + nums[i];       
                         diff = newDiff;
                     }                  
                    
-                    if(sum < target)
+                    if (sum < target)
                     { 
-                       lo++;
+                      lo++;
                     }
                     else 
                     {
@@ -27,4 +25,5 @@ public int threeSumClosest(int[] nums, int target)
              }
         }
         return res;
-     }
+ 
+  }

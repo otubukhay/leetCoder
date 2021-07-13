@@ -1,14 +1,9 @@
-/*
-Time complexity: O(M(4⋅3 ^L−1)), where M is the number of cells in the board and L is the maximum length of words.
-
-
-*/
-   class TrieNode 
-   {
+class Solution {
+    // prune   
+    class TrieNode {
         TrieNode[] children;
         String word;
-        public TrieNode() 
-		{
+        public TrieNode() {
             children = new TrieNode[26];
             word = null;
         }
@@ -26,7 +21,8 @@ Time complexity: O(M(4⋅3 ^L−1)), where M is the number of cells in the board
         for (int i = 0; i < board.length; i++) 
         {
             for (int j = 0; j < board[0].length; j++) 
-            {                
+            {
+                char c = board[i][j];
                 dfs(board, i, j, root, res);
             }
         }
@@ -37,13 +33,14 @@ Time complexity: O(M(4⋅3 ^L−1)), where M is the number of cells in the board
     private void dfs(char[][] board, int i, int j, 
        TrieNode cur, List<String> res)
     {
-        if (i < 0 || j < 0 || i > board.length - 1 || j > board[0].length - 1 || board[i][j] == '#' || cur == null) 
-            return;        
+        if (i < 0 || j < 0 || i > board.length - 1 ||
+           j > board[0].length - 1 || board[i][j] == '#' ||cur == null) return;        
         
         char c = board[i][j];        
         cur = cur.children[c - 'a'];
         if (cur != null) 
-        {            
+        {
+            
             if (cur.word != null) 
             {
                 res.add(cur.word);
@@ -77,3 +74,4 @@ Time complexity: O(M(4⋅3 ^L−1)), where M is the number of cells in the board
             cur.word = s;
         }
     }
+}
